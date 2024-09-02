@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/__Scene/Main/MainMenu.unity
+    guid: 06c420b62da2517459fb4414ea38873c
+  - enabled: 1
+    path: Assets/__Scene/Main/ITBJatinangor.unity
+    guid: 3e26276ba0d8b854893d2643fecdd21e
+  - enabled: 1
+    path: Assets/__Scene/Main/ITBKotaBandung.unity
+    guid: ee2425b62b56c0b42832ca0342afcafd
+  - enabled: 1
+    path: Assets/__Scene/Main/KotaBandung.unity
+    guid: 3ccb7bb916c73ce46a88274ca96147e8
   m_configObjects: {}
