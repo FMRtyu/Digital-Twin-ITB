@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DigitalTwinITB.jatinangor;
+using UnityEngine;
 
 namespace CameraControl {
 	public class CameraMotion : MonoBehaviour {
@@ -12,9 +13,14 @@ namespace CameraControl {
 		private Vector3 _targetPosition;
 		private Vector3 _input;
 
+		private JatinangorController _controller;
+
 		private void Awake() {
 			_targetPosition = transform.position;
-		}
+
+            _controller = FindAnyObjectByType<JatinangorController>();
+
+        }
 			
 		private void HandleInput() {
 			float x = Input.GetAxisRaw("Horizontal");
@@ -42,6 +48,13 @@ namespace CameraControl {
 		private void Update() {
             if (!isCCTVSelected)
             {
+				if (_controller != null)
+				{
+                    if (_controller.currentCameraState != CameraState.World)
+                    {
+                        return;
+                    }
+                }
 				HandleInput();
 				if (!dragPanMoveActive)
 				{
