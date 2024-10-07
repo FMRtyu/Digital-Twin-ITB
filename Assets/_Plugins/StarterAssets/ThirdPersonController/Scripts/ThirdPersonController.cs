@@ -101,6 +101,7 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
+        //controller
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
@@ -128,17 +129,18 @@ namespace StarterAssets
 
         private void Awake()
         {
+            init();   
+        }
+
+        protected virtual void init()
+        {
             // get a reference to our main camera
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
-        }
-
-        private void Start()
-        {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -156,6 +158,11 @@ namespace StarterAssets
         }
 
         private void Update()
+        {
+            movement();
+        }
+
+        protected virtual void movement()
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -189,7 +196,7 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
-        private void GroundedCheck()
+        protected virtual void GroundedCheck()
         {
             // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
@@ -293,7 +300,7 @@ namespace StarterAssets
             }
         }
 
-        private void JumpAndGravity()
+        protected virtual void JumpAndGravity()
         {
             if (Grounded && !isInputing)
             {

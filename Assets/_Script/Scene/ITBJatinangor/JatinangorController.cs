@@ -74,6 +74,7 @@ namespace DigitalTwinITB.jatinangor
             SituWTPValueChanged += ChangeSituWTPValue;
             WTPGWTValueChanged += ChangeWTPGWTValue;
             onLayerChange += ChangeLayer;
+            cameraState += ChangePlayerCamera;
 
             ChangeLayer(JatinangorLayerState.BasicLayers);
 
@@ -119,6 +120,11 @@ namespace DigitalTwinITB.jatinangor
                 default:
                     break;
             }
+        }
+
+        public void ChangePlayerCamera(CameraState newState)
+        {
+            currentCameraState = newState;
         }
         #endregion
 
